@@ -2,9 +2,41 @@
 
 {% block content %}
 {{bock.super}}
-  <br>
-  <h2 class="text-center">Ride Along moves Kenya</h2>
-  <h1 class="text-center">Your ride, on demand</h1>
-  <p>Whether you’re headed to Westlands, Gigiri, or to JKIA, the Uber app connects you with a reliable ride — from low-cost to premium — in minutes. One tap and a car comes directly to you. Your driver knows exactly where to go. And you can pay with either cash or card.</p>
+  <div id="down">
+    <div class="jumbotron" >
+      <h2 class="move">RideAlong moves</h2>
+      <h2 class="move"><strong>Nairobi</strong></h2>
+    </div>
+    <br>
+    <div class="container">
+      <h2 class="text-left">Riding with RideAlong</h2>
+      <h1 class="text-left">Your ride, on demand</h1>
+      <p>Whether you’re headed to Westlands, Gigiri, or to JKIA, the Uber app connects you with a reliable ride — from low-cost to premium — in minutes. One tap and a car comes directly to you. Your driver knows exactly where to go. And you can pay with either cash or card.</p>
+      <p class="red">MORE ABOUT YOUR RIDE ></p>
+    </div>
+    <div class="container">
+      <h2>Explore your options</h2>
+      <a href=""><button class="btn" id="sign">SIGN UP TO RIDE</button></a>
+    </div>
+    <!-- <div class="">
+      <nav class="navbar navbar-inverse navbar-bottom">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'index' %}" id="ridealong">RIDEALONG</a>
+            <a class="navbar-brand" href=""><button class="btn" id="driver">BECOME A DRIVER</button></a>
+          </div>
+        </div>
+      </nav>
+    </div> -->
+    <div class="nav">
+      <nav class="navbar navbar-inverse navbar-fixed-bottom" id="footer">
+        <div class="navbar-text pull-left" id="low">RIDEALONG</div>
+        <div class="navbar-text"><button class="btn" id="up">SIGN UP TO RIDE</button></div>
+        <div class="navbar-text pull-right"><button class="btn" id="dere">BECOME A DRIVER</button></div>
+        <div class="container">
+        </div>
+      </nav>
+    </div>
+  </div>
 {% endblock %}
 

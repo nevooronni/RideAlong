@@ -1,0 +1,68 @@
+{% extends 'registration/base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+  {% block styles %}
+    {% bootstrap_css %}
+  {% endblock %}
+  {% block content %}
+  <div class="row">
+  <div class="jumbotron">
+    <a href=""><button class="btn">RIDEALONG</button></a>
+    <h1>Ridealong needs partners like you.</h1>
+    <h3>Drive with Ridealong and earn great money as an independent contractor. Get paid weekly just for helping our community of riders get rides around town. Be your own boss and get paid in fares for driving on your own schedule.</h3>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="text-center">
+          Sign Up 
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="register">
+          <a href=""><button class="btn">ALREADY HAVE AN ACCOUNT?Log in</button></a>
+          <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+              <div class="form-group">
+                {{form.first_name.label}}
+                {{form.first_name}}
+                {{form.first_name.errors}}
+              </div>
+              <div class="form-group">
+                {{form.last_name.label}}
+                {{form.last_name}}
+                {{form.last_name.errors}}
+              </div>
+              <div class="form-group">
+                {{form.phone.label}}
+                {{form.phone}}
+                {{form.phone.errors}}
+              </div>
+              <div class="form-group">
+                {{form.city.label}}
+                {{form.city}}
+                {{from.city.errors}}
+              </div>
+              <input type="submit" class="btn btn-primary btn-sm" value="SUBMIT">
+          </form>
+          <p>By proceeding, I agree that Uber or its representatives may contact me by email, phone, or SMS (including by automated means) at the email address or number I provide, including for marketing purposes. I have read and understand the Driver Privacy Statement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <img src="">
+      <h3>Make good Money.</h3>
+      <p>Got a car? Turn it into a money machine. The city is buzzing and Uber makes it easy for you to cash in on the action. Plus, you've already got everything you need to get started.</p>
+    </div>
+    <div class="col-md-4">
+      <img src="">
+      <h3>Drive when you want.</h3>
+      <p>Need something outside the 9 to 5? As an independent contractor with Uber, you’ve got freedom and flexibility to drive whenever you have time. Set your own schedule, so you can be there for all of life’s most important moments.</p>
+    </div>
+    <div class="col-md-4">
+      <img src="">
+      <h3>No office, no boss.</h3>
+      <p>Whether you’re supporting your family or saving for something big, Uber gives you the freedom to get behind the wheel when it makes sense for you. Choose when you drive, where you go, and who you pick up.</p>
+    </div>
+  </div>
+  {% endblock %}

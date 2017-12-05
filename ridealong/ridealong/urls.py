@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'',include('app.urls'))
+    url(r'',include('app.urls')),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+
 ]

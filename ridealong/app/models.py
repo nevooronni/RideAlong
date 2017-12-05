@@ -9,7 +9,7 @@ class Rider(models.Model):
 	city = models.CharField(max_length = 30)
 
 	@classmethod
-	def rider_list(cls):
+	def riders_list(cls):
 		riders = Rider.objects.all()
 		return riders
 

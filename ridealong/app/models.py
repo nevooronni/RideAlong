@@ -7,7 +7,8 @@ class Rider(models.Model):
 	email = models.EmailField()
 	phone = models.IntegerField()
 	city = models.CharField(max_length = 30)
-
+	password = models.CharField(max_length=50)
+	
 	@classmethod
 	def riders_list(cls):
 		riders = Rider.objects.all()
@@ -21,6 +22,7 @@ class Driver(models.Model):
 	email = models.EmailField()
 	phone = models.IntegerField()
 	city = models.CharField(max_length = 30)
+	password = models.CharField(max_length=50)
 
 	def __str__(self):
 		return self.first_name + '' + self.last_name

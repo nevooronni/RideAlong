@@ -9,4 +9,6 @@ urlpatterns=[
     url(r'^driver/(\d+)',views.driver,name = 'driver'),
     url(r'^page',views.page,name = 'page'),
     url(r'^new/rider',views.register_rider,name = 'register_rider'),
+    url(r'^login/rider',views.login_rider,name = "login_rider"),
+    url(r'^rider/(\d+)',views.rider,name = 'rider'),
 ]

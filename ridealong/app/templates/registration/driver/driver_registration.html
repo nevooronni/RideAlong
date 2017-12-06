@@ -5,11 +5,12 @@
     {% bootstrap_css %}
   {% endblock %}
   {% block content %}
+  <div class="container-fluid">
   <div class="row">
-  <div class="jumbotron">
-    <a href=""><button class="btn">RIDEALONG</button></a>
-    <h1>Ridealong needs partners like you.</h1>
-    <h3>Drive with Ridealong and earn great money as an independent contractor. Get paid weekly just for helping our community of riders get rides around town. Be your own boss and get paid in fares for driving on your own schedule.</h3>
+  <div class="jumbotron" id="jumbo2">
+    <a href="{% url 'index' %}"><button class="btn" id="bur">RIDEALONG</button></a>
+    <h2>Ridealong needs<br> partners like<br> you.</h2>
+    <h4>Drive with Ridealong and earn great <br>money as an independent<br> contractor. Get paid weekly just for<br> helping our community of riders get<br> rides around town. Be your own<br> boss and get paid in fares for<br> driving on your own schedule.</h4>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="text-center">
@@ -18,7 +19,7 @@
       </div>
       <div class="panel-body">
         <div class="register">
-          <a href=""><button class="btn">ALREADY HAVE AN ACCOUNT?Log in</button></a>
+          <a href="{% url 'login_driver' %}"><button class="btn">ALREADY HAVE AN ACCOUNT?Log in</button></a>
           <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
               <div class="form-group">
@@ -48,26 +49,24 @@
       </div>
     </div>
   </div>
-    <div class="row">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-2">
-        <img src="">
-        <h3>Make good Money.</h3>
-        <p>Got a car? Turn it into a money machine. The city is buzzing and Uber makes it easy for you to cash in on the action. Plus, you've already got everything you need to get started.</p>
-      </div>
-      <div class="col-md-2">
-        <img src="">
-        <h3>Drive when you want.</h3>
-        <p>Need something outside the 9 to 5? As an independent contractor with Uber, you’ve got freedom and flexibility to drive whenever you have time. Set your own schedule, so you can be there for all of life’s most important moments.</p>
-      </div>
-      <div class="col-md-2">
-        <img src="">
-        <h3>No office, no boss.</h3>
-        <p>Whether you’re supporting your family or saving for something big, Uber gives you the freedom to get behind the wheel when it makes sense for you. Choose when you drive, where you go, and who you pick up.</p>
-      </div>
-      <div class="col-md-3">
-      </div>
+  <div class="row">
+    <div class="container">
+    <div class="col-md-4">
+      <img src="">
+      <h3>Make good Money.</h3>
+      <p>Got a car? Turn it into a money machine. The city is buzzing and Uber makes it easy for you to cash in on the action. Plus, you've already got everything you need to get started.</p>
     </div>
+    <div class="col-md-4">
+      <img src="">
+      <h3>Drive when you want.</h3>
+      <p>Need something outside the 9 to 5? As an independent contractor with Uber, you’ve got freedom and flexibility to drive whenever you have time. Set your own schedule, so you can be there for all of life’s most important moments.</p>
+    </div>
+    <div class="col-md-4">
+      <img src="">
+      <h3>No office, no boss.</h3>
+      <p>Whether you’re supporting your family or saving for something big, Uber gives you the freedom to get behind the wheel when it makes sense for you. Choose when you drive, where you go, and who you pick up.</p>
+    </div>
+    </div>
+  </div>
   </div>
   {% endblock %}

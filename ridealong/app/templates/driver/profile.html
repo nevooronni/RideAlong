@@ -1,0 +1,17 @@
+{% extends 'driver/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block styles %}
+  {{block.super}}
+{% endblock %}
+
+{% block content %}
+  {{block.super}}
+  <div class="container">
+    <div class="row">
+      <h1>Your Profile</h1>
+      <h1>{{driver.first_name}}</h1>
+    </div>
+  </div>
+{% endblock %}

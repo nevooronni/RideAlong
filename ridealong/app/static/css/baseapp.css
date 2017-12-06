@@ -21,6 +21,26 @@
   border-radius: 0px;
 }
 
+#driver2 {
+  position: relative;
+  top: -13px;
+  right: 10px;
+  padding-top: 10px;
+  background-color: transparent;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 0px;
+  font-size: ;
+}
+
+#driver2:hover {
+  border-top-style: solid;
+  border-top-color: #008000;
+  border-top-width: 4px;
+  color: #008000;
+}
+
 .move {
   margin-left: 50px;
 }
@@ -73,4 +93,43 @@
   border-style: solid;
   border-width: 2px;
   border-color: #fff;
+}
+
+#jumbo2 {
+  background-image: url("static/img/background_new-bcfeff309a.jpg");
+}
+
+#bar {
+  background-color: #fff;
+  color: #000;
+  border-radius: 0px;
+  width: 80px;
+  height: 100px;
+}
+
+#pagesign {
+  margin-top: 8%;
+  margin-left: 18%;
+  margin-bottom: 4%;
+  font-size: 46px;
+  color: #111;
+}
+
+.glyphicon-arrow-right {
+  margin-left: 15%;
+  color: #fff;
+}
+
+.now {
+  width: 200px;
+  border-radius: 0px;
+  height: 50px;
+  color: #fff;
+  background-color: #C90000;
+}
+
+
+.now:hover {
+  color: #fff;
+  background-color: #960a0a;
 }

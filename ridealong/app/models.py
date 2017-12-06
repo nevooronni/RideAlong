@@ -13,6 +13,7 @@ class Rider(models.Model):
 		riders = Rider.objects.all()
 		return riders
 
+# class RiderProfile():
 
 class Driver(models.Model):
 	first_name = models.CharField(max_length = 30)

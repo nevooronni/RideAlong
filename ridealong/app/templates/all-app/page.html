@@ -1,0 +1,34 @@
+{% extends 'all-app/base.html' %}
+
+{% block content %}
+{{bock.super}}
+  <div id="down">
+    <div class="row">
+      <h1 id="pagesign">Sign In</h1>
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-4">
+        <h2>Driver</h2>
+        <p>Find everything you need to track your success on<br> the road.</p>
+        <a href="{% url 'login_driver' %}"><button class="btn now">DRIVER SIGN IN<i class="glyphicon glyphicon-arrow-right"></i></button></a>
+      </div>
+      <div class="col-md-4">
+        <h2>Rider</h2>
+        <p>Manage your payment options, review trip history,<br> and more.</p>
+        <a href=""><button class="btn now">RIDER SIGN IN<i class="glyphicon glyphicon-arrow-right"></i></button></a>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    <div class="nav">
+      <nav class="navbar navbar-inverse navbar-fixed-bottom" id="footer">
+        <div class="navbar-text pull-left" id="low">RIDEALONG</div>
+        <div class="navbar-text"><button class="btn" id="up">SIGN UP TO RIDE</button></div>
+        <div class="navbar-text pull-right"><button class="btn" id="dere">BECOME A DRIVER</button></div>
+        <div class="container">
+        </div>
+      </nav>
+    </div>
+  </div>
+{% endblock %}
+

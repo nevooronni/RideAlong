@@ -2,24 +2,28 @@ from django import forms
 from .models import Driver,Rider
 
 class RiderRegistrationForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput)
 	class Meta:	
 		model = Rider
-		fields = ('first_name','last_name','email','phone','city',)
+		fields = ('first_name','last_name','password','email','phone','city',)
 
 class DriverRegistrationForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput)
 	class Meta:
 		model = Driver
-		fields = ('first_name','last_name','email','phone','city',)	
+		fields = ('first_name','last_name','password','email','phone','city',)	
 
 class DriverLoginForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput)
 	class Meta :
 		model = Driver
-		fields = ('phone',)
+		fields = ('phone','password')
 
 class RiderLoginForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput)	
 	class Meta:
 		model = Rider
-		fields = ('phone',)
+		fields = ('phone','password')
 
 # class EditDriverProfileForm(forms.ModelForm):
 # 	class Meta:

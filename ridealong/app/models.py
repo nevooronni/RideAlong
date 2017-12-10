@@ -4,6 +4,7 @@ from django.dispatch import receiver
 
 DRIVER_PIC = "Driver/profile_pic/"
 CAR_PIC = "car_pic/"
+RIDER_PIC = "Rider/prof_pic"
 
 Genders_Choices = (
 		('F', 'female'),
@@ -25,6 +26,29 @@ class Rider(models.Model):
 		riders = Rider.objects.all()
 		return riders
 
+class RiderProfile(models.Model):
+	rider = models.OneToOneField(Rider,on_delete=models.CASCADE)
+	prof_pic = models.ImageField(blank=True,upload_to='Rider/prof_pic',default='RIDER_PIC')
+	gender = models.CharField(max_length=30,choices=Genders_Choices,default='None',blank=True)
+	home_address = models.CharField(blank=True,max_length=255)
+
+	def __str__(self):
+		return self.rider.first_name + '' + self.rider.last_name	
+
+	@classmethod
+	def riders_profile_list(cls):
+		riders_profiles = Driver.objects.all()
+		return riders_profiles
+
+	@receiver(post_save,sender=Rider)
+	def create_profile(sender,instance,created,**kwargs):
+		if created:
+			RiderProfile.objects.create(rider=instance)
+
+	@receiver(post_save,sender=Rider)
+	def save_profile(sender,instance,**kwargs):
+		instance.riderprofile.save()
+
 class Driver(models.Model):
 	first_name = models.CharField(max_length = 50)
 	last_name = models.CharField(max_length = 50)
@@ -38,12 +62,12 @@ class Driver(models.Model):
 
 	@classmethod
 	def drivers_list(cls):
-		drivers = Driver.objects.all()
+		drivers = Rider.objects.all()
 		return drivers
 
 class DriverProfile(models.Model):
 	driver = models.OneToOneField(Driver,on_delete=models.CASCADE)
-	prof_pic = models.ImageField(blank=True,upload_to="driver/profile_pic",default="DRIVER_PIC")
+	prof_pic = models.ImageField(blank=True,upload_to="Driver/profile_pic",default="DRIVER_PIC")
 	gender = models.TextField(max_length=50,choices=Genders_Choices,default='None',blank=True)
 	car_pic = models.ImageField(blank=True,upload_to="car_pic",default="CAR_PIC")
 	car_plate = models.TextField(max_length=255,blank=True)
@@ -58,14 +82,14 @@ class DriverProfile(models.Model):
 		driver_profiles = DriverProfile.objects.all()
 		return driver_profiles
 
-	# @receiver(post_save,sender=Driver)#create profile when creating driver
-	# def create_profile(sender,instance,created,**kwargs):
-	# 	if created:
-	# 		DriverProfile.objects.create(driver=instance)
+	@receiver(post_save,sender=Driver)#create profile when creating driver
+	def create_profile(sender,instance,created,**kwargs):
+		if created:
+			DriverProfile.objects.create(driver=instance)
 
-	# @receiver(post_save,sender=Driver)#save deriver proflie when creating driver
-	# def save_profile(sender,instance,**kwargs):
-	# 	instance.driverprofile.save()
+	@receiver(post_save,sender=Driver)#save deriver proflie when creating driver
+	def save_profile(sender,instance,**kwargs):
+		instance.driverprofile.save()
 
 
 

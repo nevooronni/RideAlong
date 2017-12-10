@@ -49,6 +49,7 @@ class RiderProfile(models.Model):
 	def save_profile(sender,instance,**kwargs):
 		instance.riderprofile.save()
 
+
 class Driver(models.Model):
 	first_name = models.CharField(max_length = 50)
 	last_name = models.CharField(max_length = 50)
@@ -91,6 +92,18 @@ class DriverProfile(models.Model):
 	def save_profile(sender,instance,**kwargs):
 		instance.driverprofile.save()
 
+class RiderReview(models.Model):
+	driver = models.ForeignKey(Driver,on_delete=models.CASCADE)
+	rider_profile = models.ForeignKey(RiderProfile,on_delete=models.CASCADE)
+	review = models.TextField()
+
+	def __str__(self):
+		return self.driver.first_name + '' + self.driver.last_name
+
+	@classmethod
+	def all_rider_reviews(self,rider_profile_id):
+		rider_reviews =RiderReview.objects.filter(rider_profile=rider_profile_id)
+		return rider_reviews
 
 
 

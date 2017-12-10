@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Driver,Rider,DriverProfile,RiderProfile
+from .models import Driver,Rider,DriverProfile,RiderProfile,RiderReview
 
 class DriverTestClass(TestCase):
 	'''
@@ -65,7 +65,7 @@ class RiderTestClass(TestCase):
 
 class RiderProfileTestClass(TestCase):
 	'''
-	test for rider profile
+	test for rider profile class
 	'''
 	def setUp(self):
 		'''
@@ -87,3 +87,36 @@ class RiderProfileTestClass(TestCase):
 		rider_profiles = RiderProfile.objects.all()
 		self.assertTrue(len(list_of_riders_profiles) == len(rider_profiles))
 
+class RiderReviewTestClass(TestCase):
+	'''
+	test for the rider review class
+	'''
+	def setUp(self):
+		'''
+		set up method to create an instance of the RiderReview class
+		'''
+		self.review = RiderReview(review='not bad for first ride would be willing to try again.')
+
+	def test_instance(self):
+		'''
+		test to check if the rider reveiw is an instance of the RiderReview class
+		'''
+		self.assertTrue(isinstance(self.review,RiderReview))
+
+	def test_rider_reviews(self):
+		'''
+		test to get list of rider reviews form the db
+		'''
+		self.driver = Driver(first_name = "Neville",last_name = "Oronni",email = "nevooronni@gmail.com",phone = "0799244265",city = "Nairobi")
+		self.driver.save()
+
+		self.rider = Rider(first_name = "chelsea",last_name = "obrien",email = "chelseaobrien@gmail.com",phone = "0725459516",city = "Nairobi")
+		self.rider.save()
+
+		self.rider_profile = RiderProfile(rider=self.rider,gender="female",home_address="Nairobi")
+		self.rider_review = RiderReview(driver=self.driver,rider_profile=self.rider_profile,review="this was a good ride")
+
+		all_reviews = RiderReview.all_rider_reviews(self.rider_profile.id)
+		rider_reviews = RiderReview.objects.all()
+
+		self.assertTrue(len(all_reviews) == len(rider_reviews))

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Driver,Rider
+from .models import Driver,Rider,DriverProfile
 
 class DriverTestClass(TestCase):
 	'''
@@ -19,6 +19,30 @@ class DriverTestClass(TestCase):
 		drivers = Driver.objects.all()
 
 		self.assertTrue(len(all_drivers) == len(drivers))
+
+class DriverProfileTestClass(TestCase):
+	'''
+	test for driver profile class
+	'''
+	def setUp(self):
+		'''
+		setup method
+		'''
+		self.profile = DriverProfile(gender='male',car_plate='KAV4718',car_color='black',car_capacity=4)
+
+	def test_instance(self):
+		'''
+		check if profile is an instance of the driver profile class
+		'''
+		self.assertTrue(isinstance(self.profile,DriverProfile))
+
+	def test_drivers_profile_list(self):
+		'''
+		get list of drivers profiles from the db and return a list
+		'''
+		list_of_drivers_profiles = DriverProfile.driver_profile_list()
+		driver_profiles = DriverProfile.objects.all()
+		self.assertTrue(len(list_of_drivers_profiles) == len(driver_profiles))
 
 class RiderTestClass(TestCase):
 	'''

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Driver,Rider,DriverProfile,RiderProfile,RiderReview
+from .models import Driver,Rider,DriverProfile,RiderProfile,RiderReview,DriverReview
 
 class DriverTestClass(TestCase):
 	'''
@@ -95,7 +95,7 @@ class RiderReviewTestClass(TestCase):
 		'''
 		set up method to create an instance of the RiderReview class
 		'''
-		self.review = RiderReview(review='not bad for first ride would be willing to try again.')
+		self.review = RiderReview(review='rider was very cooperative')
 
 	def test_instance(self):
 		'''
@@ -105,7 +105,7 @@ class RiderReviewTestClass(TestCase):
 
 	def test_rider_reviews(self):
 		'''
-		test to get list of rider reviews form the db
+		test to get list of rider reviews from the db
 		'''
 		self.driver = Driver(first_name = "Neville",last_name = "Oronni",email = "nevooronni@gmail.com",phone = "0799244265",city = "Nairobi")
 		self.driver.save()
@@ -120,3 +120,38 @@ class RiderReviewTestClass(TestCase):
 		rider_reviews = RiderReview.objects.all()
 
 		self.assertTrue(len(all_reviews) == len(rider_reviews))
+
+class DriverReviewTestClass(TestCase):
+	'''
+	test for the driver review class
+	'''
+	def setUp(self):
+		'''
+		set up method
+		'''
+		self.review = DriverReview(review='not bad for the firs ride')
+
+	def test_instance(self):
+		'''
+		test to check if the driver review is an instace of the DriverReview class
+		'''
+		self.assertTrue(isinstance(self.review,DriverReview))
+
+
+	def test_driver_reviews(self):
+		'''
+		test to get list of driver reviews from the db
+		'''
+		self.rider = Rider(first_name = "chelsea",last_name = "obrien",email = "chelseaobrien@gmail.com",phone = "0725459516",city = "Nairobi")
+		self.rider.save()
+
+		self.driver = Driver(first_name = "Neville",last_name = "Oronni",email = "nevooronni@gmail.com",phone = "0799244265",city = "Nairobi")
+		self.driver.save()
+
+		self.driver_profile = DriverProfile(driver=self.driver,gender='male',car_plate='KAV4718',car_color='black',car_capacity=4)
+		self.driver_review = DriverReview(rider=self.rider,driver_profile=self.driver_profile,review='not bad for the firs ride')
+	
+		all_reviews = DriverReview.all_driver_reviews(self.driver_profile.id)
+		driver_reviews = DriverReview.objects.all()
+
+		self.assertTrue(len(all_reviews) == len(driver_reviews))

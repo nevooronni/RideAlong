@@ -106,4 +106,15 @@ class RiderReview(models.Model):
 		return rider_reviews
 
 
+class DriverReview(models.Model):
+	rider = models.ForeignKey(Rider,on_delete=models.CASCADE)
+	driver_profile = models.ForeignKey(DriverProfile,on_delete=models.CASCADE)
+	review = models.TextField()
 
+	def __str__(self):
+		return self.rider.first_name + '' + self.rider.last_name
+
+	@classmethod
+	def all_driver_reviews(self,driver_profile_id):
+		driver_reviews = DriverReview.objects.filter(driver_profile=driver_profile_id)
+		return driver_reviews

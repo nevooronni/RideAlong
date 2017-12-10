@@ -8,10 +8,22 @@
 
 {% block content %}
   {{block.super}}
-  <div class="container">
-    <div class="row">
-      <h1>Your Profile</h1>
-      <h1>{{driver.first_name}}</h1>
+  <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="" id="ridealong2">RIDEALONG <span id="headertwo">profile</span></a>
+        <a class="navbar-header" href="{% url 'index' %}">
+          Sign Out
+        </a>
+        <a class="navbar-header" href="">{{driver.first_name}}{{driver.last_name}}</a>
+      </div>
     </div>
+  </nav>
+ 
+    <div class="row" id="downer">
+      <div class="container">
+        <h1>Your Profile</h1>
+        <h1>{{driver.first_name}}</h1>
+      </div>
   </div>
 {% endblock %}

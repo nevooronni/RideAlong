@@ -16,7 +16,7 @@ def register_driver(request):
 		if form.is_valid:
 			first_name = request.POST.get('first_name')
 			last_name = request.POST.get('last_name')
-			password = request.Post.get('password')
+			password = request.POST.get('password')
 			email = request.POST.get('email')
 			phone = request.POST.get('phone')
 			city = request.POST.get('city')

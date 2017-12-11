@@ -201,40 +201,43 @@
 }
 
 #drivername {
-  font-size: 30px;
-  float: right;
+  font-size: 20px;
+  position: relative;
+  top: -35px;
+  left: 670%;
+  color: #fff;
 }
 
 #row1 {
   border-style: solid; 
   border-color: #D3D3D3; 
   border-width: 1px; 
-  padding: 50%;
-  height: 700px;
+  padding-left: ;
+  height: 650px;
 }
 
 #row2 {
   border-style: solid; 
   border-color: #D3D3D3; 
   border-width: 1px; 
-  padding: 50%;
-  height: 700px;
+  padding:  3%;
+  height: 650px;
 }
 
 #row3 {
   border-style: solid; 
   border-color: #D3D3D3; 
   border-width: 1px; 
-  padding: 50%;
-  height: 700px;
+  padding:  3%;
+  height: 650px;
 }
 
 #row4 {
   border-style: solid; 
   border-color: #D3D3D3; 
   border-width: 1px;  
-  padding: 50%;
-  height: 700px; 
+  /*padding:  10%;*/
+  height: 650px; 
 }
 
 #rowdown {
@@ -252,4 +255,27 @@
 
 #headercolor {
   color: #1fbad6;
+}
+
+#toptop {
+  background-color: #404040;
+  height: 70px;
+}
+
+#headercenter {
+  margin-top: 10%;
+  margin-left: 350%;
+  font-size: 25px;
+  color: #fff;
+  font-weight: bold;
+}
+
+#rowmanipulate {
+  margin-top: 70px;
+}
+
+.line {
+  border-bottom-style: solid; 
+  border-bottom-color: #D3D3D3; 
+  border-bottom-width: 1px;
 }

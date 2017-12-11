@@ -17,9 +17,9 @@ class Rider(models.Model):
 	first_name = models.CharField(max_length = 50)
 	last_name = models.CharField(max_length = 50)
 	email = models.EmailField(max_length = 50)
-	phone = models.IntegerField()
-	city = models.CharField(max_length = 50)
-	password = models.CharField(max_length=50)
+	phone = models.PositiveIntegerField()
+	city = models.CharField(max_length = 30)
+	password = models.CharField(max_length=30)
 	
 	@classmethod
 	def riders_list(cls):
@@ -56,7 +56,7 @@ class Driver(models.Model):
 	email = models.EmailField(max_length = 50)
 	phone = models.IntegerField()
 	city = models.CharField(max_length = 50)
-	password = models.CharField(max_length=50)
+	password = models.CharField(max_length=30)
 
 	def __str__(self):
 		return self.first_name + '' + self.last_name

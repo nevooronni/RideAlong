@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import DriverRegistrationForm,DriverLoginForm,RiderRegistrationForm,RiderLoginForm
-from .models import Rider,Driver
+from .models import Rider,Driver,DriverProfile
 from django.http import Http404,JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -61,10 +61,20 @@ def page(request):
 
 @login_required(login_url='/new/driver')
 def driver(request,id):
-	specific_driver = Driver.objects.get(id=id)
-	# driver_profile = DriverProfile.objects.get(driver=unique_driver)
+	drivers = Driver.objects.all()
 
-	return render(request,'driver/profile.html',{"driver":specific_driver})
+	try:
+		driver = Driver.objects.get(id=id)
+
+		if driver in drivers:
+			driver_profile = DriverProfile.objects.get(driver=driver)
+			
+			return render(request,'driver/profile.html',{"driver":driver,"driver_profile":driver_profile})
+		else:
+			return redirect(login_driver)
+
+	except ObjectDoesNotExist:
+		return redirect(register_driver)
 
 def register_rider(request):
 	if request.method == 'POST':
@@ -112,12 +122,10 @@ def login_rider(request):
 
 		return render(request,'registration/rider/rider_login.html',{"form":form})
 
-@login_required(login_url='/new/driver')
+@login_required(login_url='/new/rider')
 def rider(request,id):
 	specific_rider = Rider.objects.get(id=id)
 	# rider_profile = RiderProfile.objects.get(rider=specific_driver)
 
 	return render(request,'rider/profile.html',{"rider":specific_rider})
-
-
 

@@ -187,3 +187,11 @@
   margin-top: 50px;
   background-color: grey;
 }
+
+#leftright {
+  margin-left: 0px;
+}
+
+#blue {
+  color: blue;
+}

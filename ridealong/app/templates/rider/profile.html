@@ -2,17 +2,38 @@
 {% load static %}
 {% load bootstrap3 %}
 
-{% block styles %}
-  {{block.super}}
-{% endblock %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
 
-{% block content %}
-  {{block.super}}
-  <div class="container">
-    <div class="row">
-      <h1>Your Profile</h1>
-      <h2>{{rider.first_name}}</h2>
-      <h1>{{rider.last_name}}</h1>
+    {% if title %}
+    <title>Welcome - {{title}}</title>
+    {% else %}
+      <title>Ride Along</title>
+    {% endif %}
+
+    {% block styles %}
+      {% bootstrap_css %}
+      <link rel="stylesheet" href="{% static 'css/baseapp.css' %}">
+    {% endblock %}
+
+  </head>
+  <body>
+      {% block content %}
+      <nav class="navbar navbar-fixed-top" id="loginbar">
+        <div class="container-fluid">
+          <div class="navbar-header">
+          </div>
+        </div>
+      </nav> 
+      <div class="">
+        <div class="row">
+        <h1>Your Profile</h1>
+        <h2>{{rider.first_name}}</h2>
+        <h1>{{rider.last_name}}</h1>
+      </div>
     </div>
-  </div>
-{% endblock %}
+      {% endblock %}
+  </body>
+</html>

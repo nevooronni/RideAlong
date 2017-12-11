@@ -185,7 +185,7 @@
 
 #downer {
   margin-top: 50px;
-  background-color: grey;
+  background-color: blue;
 }
 
 #leftright {
@@ -194,4 +194,62 @@
 
 #blue {
   color: blue;
+}
+
+#ridealong2 {
+  margin-left: 50%;
+}
+
+#drivername {
+  font-size: 30px;
+  float: right;
+}
+
+#row1 {
+  border-style: solid; 
+  border-color: #D3D3D3; 
+  border-width: 1px; 
+  padding: 50%;
+  height: 700px;
+}
+
+#row2 {
+  border-style: solid; 
+  border-color: #D3D3D3; 
+  border-width: 1px; 
+  padding: 50%;
+  height: 700px;
+}
+
+#row3 {
+  border-style: solid; 
+  border-color: #D3D3D3; 
+  border-width: 1px; 
+  padding: 50%;
+  height: 700px;
+}
+
+#row4 {
+  border-style: solid; 
+  border-color: #D3D3D3; 
+  border-width: 1px;  
+  padding: 50%;
+  height: 700px; 
+}
+
+#rowdown {
+  border-bottom-style: solid; 
+  border-bottom-color: #D3D3D3; 
+  border-bottom-width: 1px;  
+  margin-bottom: 5%; 
+  width: auto;
+  margin-left: ;
+}
+
+#picture {
+  border-radius: 50%;
+}
+
+#headercolor {
+  color: #1fbad6;
 }

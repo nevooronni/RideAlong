@@ -16,7 +16,7 @@ Genders_Choices = (
 class Rider(models.Model):
 	first_name = models.CharField(max_length = 50)
 	last_name = models.CharField(max_length = 50)
-	email = models.EmailField(max_length = 50)
+	email = models.EmailField()
 	phone = models.PositiveIntegerField()
 	city = models.CharField(max_length = 30)
 	password = models.CharField(max_length=30)
@@ -29,6 +29,7 @@ class Rider(models.Model):
 class RiderProfile(models.Model):
 	rider = models.OneToOneField(Rider,on_delete=models.CASCADE)
 	prof_pic = models.ImageField(blank=True,upload_to='Rider/prof_pic',default='RIDER_PIC')
+	email = models.EmailField()
 	gender = models.CharField(max_length=30,choices=Genders_Choices,default='None',blank=True)
 	home_address = models.CharField(blank=True,max_length=255)
 
@@ -51,9 +52,9 @@ class RiderProfile(models.Model):
 
 
 class Driver(models.Model):
-	first_name = models.CharField(max_length = 50)
-	last_name = models.CharField(max_length = 50)
-	email = models.EmailField(max_length = 50)
+	first_name = models.CharField(max_length = 30)
+	last_name = models.CharField(max_length = 30)
+	email = models.EmailField()
 	phone = models.IntegerField()
 	city = models.CharField(max_length = 50)
 	password = models.CharField(max_length=30)
@@ -71,8 +72,9 @@ class DriverProfile(models.Model):
 	prof_pic = models.ImageField(blank=True,upload_to="Driver/profile_pic",default="DRIVER_PIC")
 	gender = models.TextField(max_length=50,choices=Genders_Choices,default='None',blank=True)
 	car_pic = models.ImageField(blank=True,upload_to="car_pic",default="CAR_PIC")
-	car_plate = models.TextField(max_length=255,blank=True)
-	car_color = models.TextField(max_length=255,blank=True)
+	email = models.EmailField() 
+	car_plate = models.TextField(max_length=255,blank=True,default='None')
+	car_color = models.TextField(max_length=255,blank=True,default='None')
 	car_capacity = models.PositiveIntegerField(default=0,blank=True)
 
 	def __str__(self):

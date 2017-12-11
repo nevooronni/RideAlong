@@ -1,29 +1,46 @@
 {% extends 'driver/base.html' %}
-{% load static %}
-{% load bootstrap3 %}
 
 {% block styles %}
   {{block.super}}
 {% endblock %}
 
 {% block content %}
-  {{block.super}}
-  <nav class="navbar navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="" id="ridealong2">RIDEALONG <span id="headertwo">profile</span></a>
-        <a class="navbar-header" href="{% url 'index' %}">
-          Sign Out
-        </a>
-        <a class="navbar-header" href="">{{driver.first_name}}{{driver.last_name}}</a>
-      </div>
+    <div class="row" id="down">
+          <div class="col-md-2 col-lg-2" id="row1">
+          </div>
+          <div class="col-md-2 col-lg-2" id="row2">
+            <div class="row">
+              <img src="{{driver_profile.prof_pic}}" alt="profile pic" height="80px" width="80px" id="picture">
+              <h3 class="text"><a href="{% url 'driver' driver.id %}">Profile</a></h3>
+            </div>
+            <div class="row">
+            </div>
+            <div class="row">
+              <h3><a href="">Drive</a></h3>
+            </div>
+            <div class="row">
+              <h3><a href="">Payment</a></h3>
+            </div>
+            <div class="row">
+              <h3><a href="{% url 'index' %}">Sign Out</a></h3>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6" id="row3">
+              <div class="row" id="rowdown">
+                <h1 class="text-center"><strong>YOUR PROFILE</h1></strong><br>
+              </div>
+              <div class="row">
+                <h4 id="headercolor">{{driver.first_name}} {{driver.last_name}}</h2>
+                <h4>{{driver_profile.gender}}</h4<br>
+                <h3><strong>VEHICLES DETAILS</strong></h3>
+                <img src="{{driver_profile.car_pic}}" alt="car pic" height="80px" width="80px">
+                <h4>{{driver_profile.car_plate}}</h4>
+                <h4>{{driver_profile.car_color}}</h4>
+                <h4>{{driver_profile.car_capacity}}</h4>
+                <a href=""><button class="btn btn-primary">EDIT PROFILE</button></a>
+              </div>
+          </div>
+          <div class="col-md-2 col-lg-2" id="row4">
+          </div>
     </div>
-  </nav>
- 
-    <div class="row" id="downer">
-      <div class="container">
-        <h1>Your Profile</h1>
-        <h1>{{driver.first_name}}</h1>
-      </div>
-  </div>
 {% endblock %}

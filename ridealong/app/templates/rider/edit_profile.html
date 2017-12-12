@@ -1,4 +1,4 @@
-{% extends 'driver/base.html' %}
+{% extends 'rider/base.html' %}
 
 {% block styles %}
   {{block.super}}
@@ -11,14 +11,14 @@
     </div>
     <div class="col-md-2 col-lg-2" id="row2">
         <div class="row line">
-          <img src="{{driver.driverprofile.prof_pic.url}}" alt="profile pic" height="180px" width="180px" id="picture">
-          <h4 class="text-center">{{driver.first_name}}</h4>
+          <img src="{{rider.riderprofile.prof_pic.url}}" alt="profile pic" height="180px" width="180px" id="picture">
+          <h4 class="text-center">{{rider.first_name}}</h4>
         </div>
         <div class="row line">
-          <h3 class="text"><a href="{% url 'driver' driver.id %}">Profile</a></h3>
+          <h3 class="text"><a href="{% url 'rider' rider.id %}">Profile</a></h3>
         </div>
         <div class="row line">
-          <h3><a href="">Drive</a></h3>
+          <h3><a href="">Ride</a></h3>
         </div>
         <div class="row line">
           <h3><a href="">Payment</a></h3>
@@ -32,11 +32,12 @@
           <div class="container" style="width: 650px; height: 400px; margin-top: -34px;">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h2 class="text-center" style="color: #1fbad6;">Edit {{driver.first_name}} {{driver.last_name}}</h2>
+                <h2 class="text-center" style="color: #1fbad6;">Edit {{rider.first_name}} {{rider.last_name}}</h2>
               </div>
               <div class="panel-body" style="height: 507px;">
                 <form action="" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
+                  <br>
                   <br>
                   <div class="form-group">
                     {{edit_profile_form.prof_pic.label}} 
@@ -44,40 +45,28 @@
                     {{edit_profile_form.prof_pic.errors}}
                   </div>
                   <br>
+                  <br>
                   <div class="form-group">
                     {{edit_profile_form.gender.label}} : 
                     {{edit_profile_form.gender}}
                     {{edit_profile_form.gender.errors}}      
                   </div>
                   <br>
-                  <div class="form-group">
-                    {{edit_profile_form.car_pic.label}} 
-                    {{edit_profile_form.car_pic}}
-                    {{edit_profile_form.car_pic.errors}}
-                  </div>
                   <br>
                   <div class="form-group">
-                    {{edit_profile_form.car_plate.label}} : 
-                    {{edit_profile_form.car_plate}}
-                    {{edit_profile_form.car_plate.errors}}
-                  </div>
-                  <div class="form-group">
-                    {{edit_profile_form.car_capacity.label}} : 
-                    {{edit_profile_form.car_capacity}}
-                    {{edit_profile_form.car_capacity.errors}}
-                  </div>
-                  <div class="form-group">
-                    {{edit_profile_form.car_color.label}} : 
-                    {{edit_profile_form.car_color}}
-                    {{edit_profile_form.car_color.errors}}
-                  </div>
-                   <div class="form-group">
-                    {{edit_profile_form.email.label}} : 
+                    {{edit_profile_form.email.label}} 
                     {{edit_profile_form.email}}
                     {{edit_profile_form.email.errors}}
                   </div>
-                  <input type="submit" class="btn btn-primary btn-sm" value="EDIT PROFILE">
                   <br>
+                  <br>
+                  <div class="form-group">
+                    {{edit_profile_form.home_address.label}} : 
+                    {{edit_profile_form.home_address}}
+                    {{edit_profile_form.home_address.errors}}
+                  </div>
+                  <br>
+                  <input type="submit" class="btn btn-primary btn-sm" value="EDIT PROFILE">
                 </form>
               </div>
             </div>

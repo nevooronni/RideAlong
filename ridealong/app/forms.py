@@ -1,5 +1,5 @@
 from django import forms 
-from .models import Driver,Rider,DriverProfile
+from .models import Driver,Rider,DriverProfile,RiderProfile
 
 class RiderRegistrationForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput)
@@ -28,9 +28,9 @@ class RiderLoginForm(forms.ModelForm):
 class EditDriverProfileForm(forms.ModelForm):
 	class Meta:
 		model = DriverProfile
-		fields = ('prof_pic','gender','car_pic','car_plate','car_color','car_capacity')
+		fields = ('prof_pic','gender','car_pic','car_plate','car_color','car_capacity','email',)
 
-# class EditRiderProfileForm(forms.ModelForm):
-# 	class Meta:
-# 		model = RiderProfile
-# 		fields = ('')
+class EditRiderProfileForm(forms.ModelForm):
+	class Meta:
+		model = RiderProfile
+		fields = ('prof_pic','gender','email','home_address',)

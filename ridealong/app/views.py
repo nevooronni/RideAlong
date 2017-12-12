@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import DriverRegistrationForm,DriverLoginForm,RiderRegistrationForm,RiderLoginForm,EditDriverProfileForm
+from .forms import DriverRegistrationForm,DriverLoginForm,RiderRegistrationForm,RiderLoginForm,EditDriverProfileForm,EditRiderProfileForm
 from .models import Rider,Driver,DriverProfile,RiderProfile
 from django.http import Http404,JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
@@ -94,6 +94,7 @@ def edit_driver_profile(request,id):
 					driver_profile.car_plate = edit_profile_form.cleaned_data['car_plate']
 					driver_profile.car_capacity = edit_profile_form.cleaned_data['car_capacity']
 					driver_profile.car_color = edit_profile_form.cleaned_data['car_color']
+					driver_profile.email = edit_profile_form.cleaned_data['email']
 					driver_profile.save()
 
 					return redirect(driver, specific_driver.id)
@@ -167,6 +168,39 @@ def rider(request,id):
 			rider_profile = RiderProfile.objects.get(rider=rider)
 			
 			return render(request,'rider/profile.html',{"rider":rider,"rider_profile":rider_profile})
+		else:
+			return redirect(login_rider)
+
+	except ObjectDoesNotExist:
+		return redirect(register_rider)
+
+@transaction.atomic
+def edit_rider_profile(request,id): 
+	riders = Rider.objects.all()
+
+	try:
+		specific_rider = Rider.objects.get(id=id)
+
+		if specific_rider in riders:
+			if request.method == 'POST':
+				edit_profile_form = EditRiderProfileForm(request.POST,instance=specific_rider.riderprofile,files=request.FILES)
+
+				if edit_profile_form.is_valid():
+					rider_profile = edit_profile_form.save(commit=False)
+					rider_profile.rider = specific_rider
+					rider_profile.prof_pic = edit_profile_form.cleaned_data['prof_pic']
+					rider_profile.email = edit_profile_form.cleaned_data['email']
+					rider_profile.home_address = edit_profile_form.cleaned_data['home_address']
+					rider_profile.save()
+
+					return redirect(rider, specific_rider.id)
+				else:
+					messages.error(request,('please correct the error below.'))
+
+			else:
+				edit_profile_form = EditRiderProfileForm(instance=specific_rider.riderprofile)
+				return render(request, 'rider/edit_profile.html',{"rider":specific_rider,"edit_profile_form":edit_profile_form})
+
 		else:
 			return redirect(login_rider)
 

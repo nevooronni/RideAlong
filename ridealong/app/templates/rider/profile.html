@@ -1,33 +1,52 @@
 {% extends 'rider/base.html' %}
-{% load static %}
-{% load bootstrap3 %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
+{% block styles %}
+  {{block.super}}
+{% endblock %}
 
-    {% if title %}
-    <title>Welcome - {{title}}</title>
-    {% else %}
-      <title>Ride Along</title>
-    {% endif %}
-
-    {% block styles %}
-      {% bootstrap_css %}
-      <link rel="stylesheet" href="{% static 'css/baseapp.css' %}">
-    {% endblock %}
-
-  </head>
-  <body>
-      {% block content %}
-      <div class="">
-        <div class="row">
-        <h1>Your Profile</h1>
-        <h2>{{rider.first_name}}</h2>
-        <h1>{{rider.last_name}}</h1>
-      </div>
+{% block content %}
+  <div class="container-fluid">
+   <div class="row" id="rowmanipulate">
+    <div class="col-md-2 col-lg-2" id="row1">
     </div>
-      {% endblock %}
-  </body>
-</html>
+    <div class="col-md-2 col-lg-2" id="row2">
+        <div class="row line">
+          <img src="{{rider_profile.prof_pic.url}}" alt="profile pic" height="180px" width="180px" id="picture">
+          <h4 class="text-center">{{rider.first_name}}</h4>
+        </div>
+        <div class="row line">
+          <h3 class="text"><a href="{% url 'rider' rider.id %}">Profile</a></h3>
+        </div>
+        <div class="row line">
+          <h3><a href="">Ride</a></h3>
+        </div>
+        <div class="row line">
+          <h3><a href="">Payment</a></h3>
+        </div>
+        <div class="row line">
+          <h3><a href="{% url 'index' %}">Sign Out</a></h3>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6" id="row3">
+        <div class="row" id="rowdown">
+          <h1 class="text-center"><strong>YOUR PROFILE</h1></strong><br>
+        </div>
+        <div class="row">
+          <h4 id="headercolor">{{rider.first_name}} {{rider.last_name}}</h2><br>
+          <h4>Gender: <span style="color: #1fbad6;">{{rider_profile.gender}}</span></h4><br>
+          <h3><strong>RIDER DETAILS</strong></h3><br>
+          <h4>Home Address: <span style="color: #1fbad6;">{{rider_profile.home_address}}</span></h4><br>
+          <h4 >Email: <span style="color: #1fbad6;">{{rider_profile.email}}</span></h4><br>
+          <a href=""><button class="btn btn-primary">EDIT PROFILE</button></a><br>
+        </div>
+    </div>
+    <div class="col-md-2 col-lg-2" id="row4">
+    </div>
+    </div>
+    <div class="nav">
+      <nav class="navbar navbar-inverse navbar-fixed-bottom" id="footer">
+        <div class="navbar-text pull-right">Site built by nevooronni</div>
+      </nav>
+    </div>
+   </div>
+{% endblock %}

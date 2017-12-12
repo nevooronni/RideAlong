@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import DriverRegistrationForm,DriverLoginForm,RiderRegistrationForm,RiderLoginForm,EditDriverProfileForm
-from .models import Rider,Driver,DriverProfile
+from .models import Rider,Driver,DriverProfile,RiderProfile
 from django.http import Http404,JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
@@ -139,11 +139,11 @@ def login_rider(request):
 		form = RiderLoginForm(request.POST)
 
 		if form.is_valid():
-			phone = request.POST.get('phone')
+			password = request.POST.get('password')
 
 			try:
-				specific_rider = Rider.objects.get(phone=phone)
-				return redirect(rider, specific_rider.id)
+				specific_rider = Rider.objects.get(password=password)
+				return redirect(rider,specific_rider.id)
 
 			except ObjectDoesNotExist:
 				raise Http404()
@@ -152,14 +152,25 @@ def login_rider(request):
 			messages.error(request,('please enter the correct login details'))
 
 	else:
-		form = DriverLoginForm()
+		form = RiderLoginForm()
 
 		return render(request,'registration/rider/rider_login.html',{"form":form})
 
 @login_required(login_url='/new/rider')
 def rider(request,id):
-	specific_rider = Rider.objects.get(id=id)
-	# rider_profile = RiderProfile.objects.get(rider=specific_driver)
+	riders = Rider.objects.all()
 
-	return render(request,'rider/profile.html',{"rider":specific_rider})
+	try:
+		rider = Rider.objects.get(id=id)
+
+		if rider in riders:
+			rider_profile = RiderProfile.objects.get(rider=rider)
+			
+			return render(request,'rider/profile.html',{"rider":rider,"rider_profile":rider_profile})
+		else:
+			return redirect(login_rider)
+
+	except ObjectDoesNotExist:
+		return redirect(register_rider)
+	
 

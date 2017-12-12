@@ -23,7 +23,7 @@ class RiderLoginForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput)	
 	class Meta:
 		model = Rider
-		fields = ('phone','password',)
+		fields = ('email','password',)
 
 class EditDriverProfileForm(forms.ModelForm):
 	class Meta:

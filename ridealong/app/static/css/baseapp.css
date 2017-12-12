@@ -280,3 +280,8 @@
   border-bottom-width: 1px;
 }
 
+.jumbotron {
+  background-image: url('/media/nairobi.png');
+  background-size: auto;
+  background-repeat: no-repeat;
+}

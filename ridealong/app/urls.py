@@ -14,7 +14,7 @@ urlpatterns=[
     url(r'^new/rider',views.register_rider,name = 'register_rider'),
     url(r'^login/rider',views.login_rider,name = "login_rider"),
     url(r'^rider/(\d+)',views.rider,name = 'rider'),
-    url(r'^edit/driver/profile(\d+)',views.edit_driver_profile,name="edit_driver_profile")
+    url(r'^edit/driver/profile(\d+)',views.edit_driver_profile,name='edit_driver_profile'),
 ]
 
 if settings.DEBUG == True:

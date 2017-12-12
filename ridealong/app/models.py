@@ -7,8 +7,8 @@ CAR_PIC = "car_pic/"
 RIDER_PIC = "Rider/prof_pic"
 
 Genders_Choices = (
-		('F', 'female'),
-		('M', 'male'),
+		('Female', 'female'),
+		('Male', 'male'),
 		('Both', 'both'),
 		('None', 'non-specified'),
 	)
@@ -73,8 +73,8 @@ class DriverProfile(models.Model):
 	gender = models.TextField(max_length=50,choices=Genders_Choices,default='None',blank=True)
 	car_pic = models.ImageField(blank=True,upload_to="car_pic",default="CAR_PIC")
 	email = models.EmailField() 
-	car_plate = models.TextField(max_length=255,blank=True,default='None')
-	car_color = models.TextField(max_length=255,blank=True,default='None')
+	car_plate = models.CharField(max_length=255,blank=True,default='None')
+	car_color = models.CharField(max_length=255,blank=True,default='None')
 	car_capacity = models.PositiveIntegerField(default=0,blank=True)
 
 	def __str__(self):

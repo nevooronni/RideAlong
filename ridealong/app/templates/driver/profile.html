@@ -33,13 +33,14 @@
         </div>
         <div class="row">
           <h4 id="headercolor">{{driver.first_name}} {{driver.last_name}}</h2>
-          <h4>{{driver_profile.gender}}</h4<br>
+          <h4>Gender: <span style="color: #1fbad6;">{{driver_profile.gender}}</span></h4<br>
           <h3><strong>VEHICLES DETAILS</strong></h3>
           <img src="{{driver_profile.car_pic.url}}" alt="car pic" height="190px" width="190px">
-          <h4>{{driver_profile.car_plate}}</h4>
-          <h4>{{driver_profile.car_color}}</h4>
-          <h4>{{driver_profile.car_capacity}}</h4>
-          <a href=""><button class="btn btn-primary">EDIT PROFILE</button></a>
+          <h4>Car Plate: <span style="color: #1fbad6;">{{driver_profile.car_plate}}</span></h4>
+          <h4>Car Color: <span style="color: #1fbad6;">{{driver_profile.car_color}}</span></h4>
+          <h4>Car Capacity: <span style="color: #1fbad6;">{{driver_profile.car_capacity}}</span></h4>
+          <h4 >Email: <span style="color: #1fbad6;">{{driver_profile.email}}</span></h4>
+          <a href="{% url 'edit_driver_profile' driver.id %}"><button class="btn btn-primary">EDIT PROFILE</button></a>
         </div>
     </div>
     <div class="col-md-2 col-lg-2" id="row4">

@@ -246,7 +246,7 @@
   border-bottom-width: 1px;  
   margin-bottom: 5%; 
   width: auto;
-  margin-left: ;
+  margin-top: -40px;
 }
 
 #picture {
@@ -280,6 +280,3 @@
   border-bottom-width: 1px;
 }
 
-#bb {
-  border-radius: 2px;
-}

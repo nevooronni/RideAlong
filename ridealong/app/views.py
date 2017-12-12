@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import DriverRegistrationForm,DriverLoginForm,RiderRegistrationForm,RiderLoginForm
+from .forms import DriverRegistrationForm,DriverLoginForm,RiderRegistrationForm,RiderLoginForm,EditDriverProfileForm
 from .models import Rider,Driver,DriverProfile
 from django.http import Http404,JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
@@ -86,11 +86,14 @@ def edit_driver_profile(request,id):
 			if request.method == 'POST':
 				edit_profile_form = EditDriverProfileForm(request.POST,instance=specific_driver.driverprofile,files=request.FILES)
 
-				if edit_driver_form.is_valid():
-					driver_profile = edit_driver_form.save(commit=False)
+				if edit_profile_form.is_valid():
+					driver_profile = edit_profile_form.save(commit=False)
 					driver_profile.driver = specific_driver
-					driver_profile.prof_pic = edit_driver_form.cleaned_data['prof_pic']
+					driver_profile.prof_pic = edit_profile_form.cleaned_data['prof_pic']
 					driver_profile.car_pic = edit_profile_form.cleaned_data['car_pic']
+					driver_profile.car_plate = edit_profile_form.cleaned_data['car_plate']
+					driver_profile.car_capacity = edit_profile_form.cleaned_data['car_capacity']
+					driver_profile.car_color = edit_profile_form.cleaned_data['car_color']
 					driver_profile.save()
 
 					return redirect(driver, specific_driver.id)
@@ -99,7 +102,7 @@ def edit_driver_profile(request,id):
 
 			else:
 				edit_profile_form = EditDriverProfileForm(instance=specific_driver.driverprofile)
-				return render(request, 'driver/edit_profile.html',{"specific_driver":specific_driver,"edit_profile_form":edit_profile_form})
+				return render(request, 'driver/edit_profile.html',{"driver":specific_driver,"edit_profile_form":edit_profile_form})
 
 		else:
 			return redirect(login_driver)

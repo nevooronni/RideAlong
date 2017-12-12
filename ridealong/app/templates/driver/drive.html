@@ -11,7 +11,7 @@
     </div>
     <div class="col-md-2 col-lg-2" id="row2">
         <div class="row line">
-          <img src="{{driver_profile.prof_pic.url}}" alt="profile pic" height="180px" width="180px" id="picture">
+          <img src="{{driver.driverprofile.prof_pic.url}}" alt="profile pic" height="180px" width="180px" id="picture">
           <h4 class="text-center">{{driver.first_name}}</h4>
         </div>
         <div class="row line">
@@ -21,26 +21,28 @@
           <h3><a href="{% url 'drive' driver.id %}">Drive</a></h3>
         </div>
         <div class="row line">
-          <h3><a href="{% url 'create_journey' driver.driverprofile.id %}">Create Journey</h3>
+          <h3><a href="{% url 'create_journey' driver.driverprofile.id %}">Create Journey</a></h3>
         </div>
         <div class="row line">
           <h3><a href="{% url 'index' %}">Sign Out</a></h3>
         </div>
     </div>
     <div class="col-md-6 col-lg-6" id="row3">
-        <div class="row" id="rowdown">
-          <h1 class="text-center"><strong>YOUR PROFILE</h1></strong><br>
-        </div>
         <div class="row">
-          <h4 id="headercolor">{{driver.first_name}} {{driver.last_name}}</h2>
-          <h4>Gender: <span style="color: #1fbad6;">{{driver_profile.gender}}</span></h4<br>
-          <h3><strong>VEHICLES DETAILS</strong></h3>
-          <img src="{{driver_profile.car_pic.url}}" alt="car pic" height="190px" width="190px">
-          <h4>Car Plate: <span style="color: #1fbad6;">{{driver_profile.car_plate}}</span></h4>
-          <h4>Car Color: <span style="color: #1fbad6;">{{driver_profile.car_color}}</span></h4>
-          <h4>Car Capacity: <span style="color: #1fbad6;">{{driver_profile.car_capacity}}</span></h4>
-          <h4 >Email: <span style="color: #1fbad6;">{{driver_profile.email}}</span></h4>
-          <a href="{% url 'edit_driver_profile' driver.id %}"><button class="btn btn-primary">EDIT PROFILE</button></a>
+          <a href="{% url 'create_journey' driver.driverprofile.id %}"><button class="btn btn-primary" style="margin-top: -10px; margin-bottom: 7px;">NEW JOURNEY</button></a>
+          {% if journeys %}
+            {% for journey in journeys %}
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h5>Departure Time: <span style="color: #1fbad6;">{{journey.time}}</span></h5>
+                  <h5>Current Location : <span style="color: #1fbad6;">{{journey.current_location}}</span></h5>
+                  <h5>Destination : <span style="color: #1fbad6;">{{journey.destination}}</span></h5> 
+                </div><br>                 
+              </div>                               
+            {% endfor %}
+          {% else %}
+            <h3 class="text-center text-danger">You do not have any journeys yet!</h3>
+          {% endif %}
         </div>
     </div>
     <div class="col-md-2 col-lg-2" id="row4">

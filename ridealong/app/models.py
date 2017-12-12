@@ -2,16 +2,13 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-DRIVER_PIC = "Driver/profile_pic/"
-CAR_PIC = "car_pic/"
-RIDER_PIC = "Rider/prof_pic"
-
 Genders_Choices = (
 		('Female', 'female'),
 		('Male', 'male'),
 		('Both', 'both'),
 		('None', 'non-specified'),
 	)
+
 
 class Rider(models.Model):
 	first_name = models.CharField(max_length = 50)
@@ -28,10 +25,10 @@ class Rider(models.Model):
 
 class RiderProfile(models.Model):
 	rider = models.OneToOneField(Rider,on_delete=models.CASCADE)
-	prof_pic = models.ImageField(blank=True,upload_to='Rider/prof_pic',default='RIDER_PIC')
+	prof_pic = models.ImageField(blank=True,upload_to='Rider/prof_pic',default="Rider/prof_pic/prof_pic.png")
 	email = models.EmailField()
 	gender = models.CharField(max_length=30,choices=Genders_Choices,default='None',blank=True)
-	home_address = models.CharField(blank=True,max_length=255)
+	general_location = models.CharField(blank=True,max_length=255)
 
 	def __str__(self):
 		return self.rider.first_name + '' + self.rider.last_name	
@@ -69,9 +66,9 @@ class Driver(models.Model):
 
 class DriverProfile(models.Model):
 	driver = models.OneToOneField(Driver,on_delete=models.CASCADE)
-	prof_pic = models.ImageField(blank=True,upload_to="Driver/profile_pic",default="DRIVER_PIC")
+	prof_pic = models.ImageField(blank=True,upload_to="Driver/prof_pic",default="Driver/prof_pic/prof_pic.png")
 	gender = models.TextField(max_length=50,choices=Genders_Choices,default='None',blank=True)
-	car_pic = models.ImageField(blank=True,upload_to="car_pic",default="CAR_PIC")
+	car_pic = models.ImageField(blank=True,upload_to="car_pic",default="car_pic/default_car.jpg")
 	email = models.EmailField() 
 	car_plate = models.CharField(max_length=255,blank=True,default='None')
 	car_color = models.CharField(max_length=255,blank=True,default='None')
@@ -120,3 +117,28 @@ class DriverReview(models.Model):
 	def all_driver_reviews(self,driver_profile_id):
 		driver_reviews = DriverReview.objects.filter(driver_profile=driver_profile_id)
 		return driver_reviews
+
+class DriverJourney(models.Model):
+	driver_profile = models.ForeignKey(DriverProfile,on_delete=models.CASCADE)
+	current_location = models.CharField(max_length = 255)
+	destination = models.CharField(max_length = 255)
+	time = models.DateTimeField(auto_now_add = True, null = True)
+
+	class Meta:
+		ordering = ['-time']#order in ascending order
+
+
+	def __str__(self):
+		return self.driver_profile.first_name + '' + self.driver_profile.last_name
+
+	@classmethod
+	def nearby_drivers(cls,rider_general_location):
+		nearby_drivers = DriverJourney.objects.filter(current_location_icontains=rider_general_location)		
+		return nearby_drivers
+
+class BookDriver(models.Model):
+	rider_profile = models.ForeignKey(RiderProfile,on_delete = models.CASCADE)
+	driver_journey = models.ForeignKey(DriverJourney,on_delete = models.CASCADE)
+
+	def __str__(self):
+		return self.rider_profile.first_name + '' + self.rider_profile.last_name

@@ -29,54 +29,29 @@
     </div>
     <div class="col-md-6 col-lg-6" id="row3">
         <div class="row">
+          
           <div class="container" style="width: 650px; height: 400px; margin-top: -34px;">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h2 class="text-center" style="color: #1fbad6;">Edit {{driver.first_name}} {{driver.last_name}}</h2>
+                <h2 class="text-center" style="color: #1fbad6;">Create Journey</h2>
               </div>
               <div class="panel-body" style="height: 507px;">
                 <form action="" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <br>
                   <div class="form-group">
-                    {{edit_profile_form.prof_pic.label}} 
-                    {{edit_profile_form.prof_pic}}
-                    {{edit_profile_form.prof_pic.errors}}
+                    {{form.current_location.label}} : 
+                    {{form.current_location}}
+                    {{form.current_location.errors}}
                   </div>
                   <br>
                   <div class="form-group">
-                    {{edit_profile_form.gender.label}} : 
-                    {{edit_profile_form.gender}}
-                    {{edit_profile_form.gender.errors}}      
+                    {{form.destination.label}} : 
+                    {{form.destination}}
+                    {{form.destination.errors}}
                   </div>
                   <br>
-                  <div class="form-group">
-                    {{edit_profile_form.car_pic.label}} 
-                    {{edit_profile_form.car_pic}}
-                    {{edit_profile_form.car_pic.errors}}
-                  </div>
-                  <br>
-                  <div class="form-group">
-                    {{edit_profile_form.car_plate.label}} : 
-                    {{edit_profile_form.car_plate}}
-                    {{edit_profile_form.car_plate.errors}}
-                  </div>
-                  <div class="form-group">
-                    {{edit_profile_form.car_capacity.label}} : 
-                    {{edit_profile_form.car_capacity}}
-                    {{edit_profile_form.car_capacity.errors}}
-                  </div>
-                  <div class="form-group">
-                    {{edit_profile_form.car_color.label}} : 
-                    {{edit_profile_form.car_color}}
-                    {{edit_profile_form.car_color.errors}}
-                  </div>
-                   <div class="form-group">
-                    {{edit_profile_form.email.label}} : 
-                    {{edit_profile_form.email}}
-                    {{edit_profile_form.email.errors}}
-                  </div>
-                  <input type="submit" class="btn btn-primary btn-sm" value="EDIT PROFILE">
+                  <input type="submit" class="btn btn-primary btn-sm" value="CREATE">
                   <br>
                 </form>
               </div>

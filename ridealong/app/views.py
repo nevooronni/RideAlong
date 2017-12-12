@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import DriverRegistrationForm,DriverLoginForm,RiderRegistrationForm,RiderLoginForm,EditDriverProfileForm,EditRiderProfileForm
-from .models import Rider,Driver,DriverProfile,RiderProfile
+from .forms import DriverRegistrationForm,DriverLoginForm,RiderRegistrationForm,RiderLoginForm,EditDriverProfileForm,EditRiderProfileForm,DriverJourneyForm
+from .models import Rider,Driver,DriverProfile,RiderProfile,DriverJourney,BookDriver
 from django.http import Http404,JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
@@ -190,7 +190,7 @@ def edit_rider_profile(request,id):
 					rider_profile.rider = specific_rider
 					rider_profile.prof_pic = edit_profile_form.cleaned_data['prof_pic']
 					rider_profile.email = edit_profile_form.cleaned_data['email']
-					rider_profile.home_address = edit_profile_form.cleaned_data['home_address']
+					rider_profile.general_location = edit_profile_form.cleaned_data['general_location']
 					rider_profile.save()
 
 					return redirect(rider, specific_rider.id)
@@ -206,5 +206,56 @@ def edit_rider_profile(request,id):
 
 	except ObjectDoesNotExist:
 		return redirect(register_rider)
+
+def create_journey(request,driverprofile_id):
+	try:
+		driver_profile = DriverProfile.objects.get(id=driverprofile_id)
+
+		specific_driver = driver_profile.driver
+
+		drivers = Driver.objects.all()
+
+		if specific_driver in drivers:
+
+			if request.method == 'POST':
+
+				form = DriverJourneyForm(request.POST)
+
+				if form.is_valid:
+
+					create_journey = form.save(commit=False)
+					create_journey.driver_profile = driver_profile
+					create_journey.save()
+					return redirect(drive, specific_driver.id)
+					
+				else:
+					messages.error(request,('please enter the right information below'))
+
+			else:
+				form = DriverJourneyForm()
+
+				return render(request,'driver/create_journey.html',{"form":form,"driver":specific_driver})	
+
+		else:
+			return redirect(login_driver)
+
+	except ObjectDoesNotExist:
+		return redirect(register_driver)
+
+def drive(request,driver_id):
+	drivers = Driver.objects.all()
+
+	try:
+		driver = Driver.objects.get(id=driver_id)
+
+		if driver in drivers:
+			driver_profile = driver.driverprofile
+			journeys = DriverJourney.objects.filter(driver_profile=driver_profile)
+			return render(request, 'driver/drive.html',{"driver":driver,"journeys":journeys,"driver_profile":driver_profile})
+		else:
+			return redirect(driver_login)
+
+	except ObjectDoesNotExist:
+		return redirect(register_driver)		
 	
 

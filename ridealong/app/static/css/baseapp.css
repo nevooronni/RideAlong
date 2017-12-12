@@ -279,3 +279,7 @@
   border-bottom-color: #D3D3D3; 
   border-bottom-width: 1px;
 }
+
+#bb {
+  border-radius: 2px;
+}

@@ -11,7 +11,7 @@
     </div>
     <div class="col-md-2 col-lg-2" id="row2">
         <div class="row line">
-          <img src="{{driver_profile.prof_pic}}" alt="profile pic" height="80px" width="80px" id="picture">
+          <img src="{{driver_profile.prof_pic.url}}" alt="profile pic" height="180px" width="180px" id="picture">
           <h4 class="text-center">{{driver.first_name}}</h4>
         </div>
         <div class="row line">
@@ -35,7 +35,7 @@
           <h4 id="headercolor">{{driver.first_name}} {{driver.last_name}}</h2>
           <h4>{{driver_profile.gender}}</h4<br>
           <h3><strong>VEHICLES DETAILS</strong></h3>
-          <img src="{{driver_profile.car_pic}}" alt="car pic" height="80px" width="80px">
+          <img src="{{driver_profile.car_pic.url}}" alt="car pic" height="190px" width="190px">
           <h4>{{driver_profile.car_plate}}</h4>
           <h4>{{driver_profile.car_color}}</h4>
           <h4>{{driver_profile.car_capacity}}</h4>

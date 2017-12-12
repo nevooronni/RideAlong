@@ -258,4 +258,25 @@ def drive(request,driver_id):
 	except ObjectDoesNotExist:
 		return redirect(register_driver)		
 	
+def nearby_drivers(request,rider_id):
+	riders = Rider.objects.all()
 
+	try:
+		rider = Rider.objects.get(id=rider_id)
+
+		if rider in riders:
+			rider_profile = RiderProfile.objects.get(rider=rider_id)
+			rider_location = rider_profile.general_location
+			driver_journeys = DriverJourney.objects.all()
+			nearby_drivers = DriverJourney.nearby_drivers(rider_location)
+
+			if len(nearby_drivers) == 0:
+				location = rider_location
+				return render(request,'rider/nearby_drivers.html',{"rider":rider,"location":location})
+			else:
+				return render(request,'rider/nearby_drivers.html',{"nearby_drivers":nearby_drivers,"rider":rider})
+		else:
+			return redirect(login_rider)
+
+	except ObjectDoesNotExist:
+		return redirect(register_rider)	

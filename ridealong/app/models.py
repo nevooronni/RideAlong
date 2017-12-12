@@ -132,8 +132,8 @@ class DriverJourney(models.Model):
 		return self.driver_profile.first_name + '' + self.driver_profile.last_name
 
 	@classmethod
-	def nearby_drivers(cls,rider_general_location):
-		nearby_drivers = DriverJourney.objects.filter(current_location_icontains=rider_general_location)		
+	def nearby_drivers(cls,rider_location):
+		nearby_drivers = DriverJourney.objects.filter(current_location__icontains=rider_location)#serch for a match		
 		return nearby_drivers
 
 class BookDriver(models.Model):

@@ -7,7 +7,7 @@
 {% block content %}
   <div class="container-fluid">
    <div class="row" id="rowmanipulate">
-    <div class="col-md-2 col-lg-2" id="row1">
+    <div class="col-md-1 col-lg-1" id="row1">
     </div>
     <div class="col-md-2 col-lg-2" id="row2">
         <div class="row line">
@@ -27,19 +27,19 @@
           <h3><a href="{% url 'index' %}">Sign Out</a></h3>
         </div>
     </div>
-    <div class="col-md-6 col-lg-6" id="row3">
+    <div class="col-md-7 col-lg-7" id="row3">
         <div class="row">
           <a href="{% url 'edit_rider_profile' rider.id %}"><button class="btn btn-primary" style="margin-top: -10px; margin-bottom: 7px; margin-left: 38%;">CHANGE LOCATION</button></a>
           {% if nearby_drivers %}
             <h2 class="text-center">{{nearby_drivers|length}} drivers near you.</h2>
              {% for driver in nearby_drivers %}
-              <div class="panel panel-default" style="width: 270px; ">
+              <div class="panel panel-default" style="width: 300px;">
                 <div class="panel-body">
-                  <img src="{{driver.driver_profile.prof_pic.url}}" height="140px" width="140px" style="display:inline;">
-                  <h5><span style="color: #1fbad6;">{{driver.driver_profile.driver.first_name}}{{driver.driver_profile.driver.last_name}}</span></h5>
-                  <h5>Destination: <span style="color: #1fbad6;">{{driver.destination}}</span></h5>
-                  <h5>Time: <span style="color: #1fbad6;"> {{driver.time}}</span></h5>
+                  <img src="{{driver.driver_profile.prof_pic.url}}" height="150px" width="270px" style="margin-left: 0%;">
                   </div> 
+                  <h5 class="text-center">{{driver.driver_profile.driver.first_name}}{{driver.driver_profile.driver.last_name}}</h5>
+                  <h5 class="text-center">Destination: <span style="color: #1fbad6;">{{driver.destination}}</span></h5>
+                  <h5 class="text-center">Time: <span style="color: #1fbad6;"> {{driver.time}}</span></h5>
                 </div><br>                 
               </div>                               
             {% endfor %}
@@ -47,8 +47,6 @@
             <h1 class="text-center text-danger">No drivers near {{location}}</h1>
           {% endif %}
         </div>
-    </div>
-    <div class="col-md-2 col-lg-2" id="row4">
     </div>
     </div>
     <div class="nav">

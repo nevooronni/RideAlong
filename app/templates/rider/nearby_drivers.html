@@ -11,7 +11,7 @@
     </div>
     <div class="col-md-2 col-lg-2" id="row2">
         <div class="row line">
-          <img src="{{rider.driverprofile.prof_pic.url}}" alt="profile pic" height="180px" width="180px" id="picture">
+          <img src="{{rider.riderprofile.prof_pic.url}}" alt="profile pic" height="180px" width="180px" style="border-radius: 50%;">
           <h4 class="text-center">{{rider.first_name}}</h4>
         </div>
         <div class="row line">
@@ -33,13 +33,15 @@
           {% if nearby_drivers %}
             <h2 class="text-center">{{nearby_drivers|length}} drivers near you.</h2>
              {% for driver in nearby_drivers %}
-              <div class="panel panel-default" style="width: 300px;">
-                <div class="panel-body">
-                  <img src="{{driver.driver_profile.prof_pic.url}}" height="150px" width="270px" style="margin-left: 0%;">
+              <div class="panel panel-default" style="width: 270px; padding-bottom: 3%;">
+                <div class="panel-body" style="margin-bottom: 0px; padding-bottom: 0px;">
+                  <img src="{{driver.driver_profile.prof_pic.url}}" height="235px" width="240px" style="margin-left: 0%;margin-bottom: 0%;">
                   </div> 
-                  <h5 class="text-center">{{driver.driver_profile.driver.first_name}}{{driver.driver_profile.driver.last_name}}</h5>
-                  <h5 class="text-center">Destination: <span style="color: #1fbad6;">{{driver.destination}}</span></h5>
-                  <h5 class="text-center">Time: <span style="color: #1fbad6;"> {{driver.time}}</span></h5>
+                  <h3 class="text-center" style="color: #1fbad6;">{{driver.driver_profile.driver.first_name}}{{driver.driver_profile.driver.last_name}}</h3>
+                  <h5 class="text-left" style="margin-left: 20%;">Destination: <span style="color: #1fbad6;">{{driver.destination}}</span></h5>
+                  <h5 class="text-left" style="margin-left: 20%;">Time: <span style="color: #1fbad6;"> {{driver.time}}</span></h5>
+                  <h5 class="text-left" style="margin-left: 20%;">Remaining Seats: <span style="color: #1fbad6;">{{driver.driver_profile.car_capacity}}</span></h5>
+                  <button class="btn btn-success" style="background-color: ; margin-left: 20%; width: 55%;">REQUEST</button>
                 </div><br>                 
               </div>                               
             {% endfor %}

@@ -19,6 +19,7 @@ urlpatterns=[
     url(r'^create/journey/(\d+)',views.create_journey,name = 'create_journey'),
     url(r'^drive/(\d+)',views.drive,name = 'drive'),
     url(r'^nearby_drivers/(\d+)',views.nearby_drivers,name = 'nearby_drivers'),
+    url(r'^request_ride/(\d+)/(\d+)',views.request_ride,name = 'request_ride'),
 ]
 
 if settings.DEBUG == True:

@@ -279,3 +279,28 @@ def nearby_drivers(request,rider_id):
 
 	except ObjectDoesNotExist:
 		return redirect(register_rider)	
+
+def request_ride(request,rider_id,driver_journey_id):
+	riders = Rider.objects.all()
+
+	try:
+		requesting_rider = Rider.objects.get(id=rider_id)	
+
+		if requesting_rider in riders:
+			rider_profile = requesting_rider.riderprofile
+			driver_journey = DriverJourney.objects.get(id=driver_journey_id)
+			current_bookings = BookDriver.objects.filter(driver_journey=driver_journey.id)
+
+			if len(current_bookings) < driver_journey.driver_profile.car_capacity:
+				seats_left = driver_journey.driver_profile.car_capacity - len(current_bookings)
+				return render(request, 'rider/request_ride.html', {"rider":requesting_rider,"driver_journey":driver_journey,"seats_left":seats_left})
+
+			elif len(current_bookings) == driver_journey.driver_profile.car_capacity:
+				message = 'This car is fully booked'
+				return render(request, 'rider/request_ride.html', {"rider":requesting_rider,"driver_journey":driver_journeys,"message":message,"seats":driver_journey.driver_profile.car_capacity})	
+
+		else:
+			return redirect(rider_login)
+
+	except ObjectDoesNotExist:
+		return redirect(register_rider)

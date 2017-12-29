@@ -157,7 +157,6 @@ def login_rider(request):
 
 		return render(request,'registration/rider/rider_login.html',{"form":form})
 
-@login_required(login_url='/new/rider')
 def rider(request,id):
 	riders = Rider.objects.all()
 

@@ -29,11 +29,11 @@
     </div>
     <div class="col-md-6 col-lg-6" id="row3">
         <div class="row">
-          <a href="{% url 'create_journey' driver.driverprofile.id %}"><button class="btn btn-primary" style="margin-top: -10px; margin-bottom: 7px;">NEW JOURNEY</button></a>
+          <a href="{% url 'create_journey' driver.driverprofile.id %}"><button class="btn btn-primary" style="margin-top: -10px; margin-bottom: 23px; margin-left: 40%;">NEW JOURNEY</button></a>
           {% if journeys %}
             {% for journey in journeys %}
-              <div class="panel panel-default">
-                <div class="panel-body">
+              <div class="panel panel-default" style="width: 250px;">
+                <div class="panel-body" style="height: 95px;">
                   <h5>Departure Time: <span style="color: #1fbad6;">{{journey.time}}</span></h5>
                   <h5>Current Location : <span style="color: #1fbad6;">{{journey.current_location}}</span></h5>
                   <h5>Destination : <span style="color: #1fbad6;">{{journey.destination}}</span></h5> 

@@ -30,12 +30,12 @@
     <div class="col-md-6 col-lg-6" id="row3">
         <div class="row">
           
-          <div class="container" style="width: 650px; height: 400px; margin-top: -34px;">
+          <div class="container" style="width: 650px; height: 400px; margin-top: -34px; padding-top: 51px;">
             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h2 class="text-center" style="color: #1fbad6;">Create Journey</h2>
+              <div class="panel-heading" style="background-color: #333;">
+                <h2 class="text-center" style="color: #fff;">Create Journey</h2>
               </div>
-              <div class="panel-body" style="height: 507px;">
+              <div class="panel-body" style="height: 300px; padding-top: 35px; padding-left: 160px;">
                 <form action="" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   <br>
@@ -51,7 +51,7 @@
                     {{form.destination.errors}}
                   </div>
                   <br>
-                  <input type="submit" class="btn btn-primary btn-sm" value="CREATE">
+                  <input type="submit" class="btn btn-primary btn-sm" value="CREATE JOURNEY" style="width: 62%; margin-left: 0%; font-weight: bold; height: 10%;">
                   <br>
                 </form>
               </div>
@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="col-md-2 col-lg-2" id="row4">
-    </div>
+    </div>s
     </div>
     <div class="nav">
       <nav class="navbar navbar-inverse navbar-fixed-bottom" id="footer">
